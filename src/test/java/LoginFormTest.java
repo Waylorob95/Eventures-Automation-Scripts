@@ -1,7 +1,6 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
@@ -11,16 +10,13 @@ import org.testng.annotations.Test;
 public class LoginFormTest {
 
     WebDriver driver;
-    WebElement username;
-    WebElement password;
-    WebElement loginButton;
-    WebElement registerLink;
 
     @BeforeTest
     public void setup(){
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.get("http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/");
+        driver.manage().window().maximize();
     }
 
     @AfterTest
@@ -33,14 +29,11 @@ public class LoginFormTest {
         driver.navigate().to("http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Identity/Account/Login");
         Thread.sleep(1000);
 
-        username = driver.findElement(By.id("Input_Username"));
-        password = driver.findElement(By.id("Input_Password"));
-        username.sendKeys("guest");
-        password.sendKeys("guest");
+        driver.findElement(By.id("Input_Username")).sendKeys("guest");
+        driver.findElement(By.id("Input_Password")).sendKeys("guest");
         Thread.sleep(1000);
 
-        loginButton = driver.findElement(By.xpath("//button[@class=\"btn btn-primary\"]"));
-        loginButton.click();
+        driver.findElement(By.xpath("//button[@class=\"btn btn-primary\"]")).click();
 
         System.out.println("You are logging in");
 
@@ -54,15 +47,11 @@ public class LoginFormTest {
         driver.navigate().to("http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Identity/Account/Login");
         Thread.sleep(1000);
 
-        username = driver.findElement(By.id("Input_Username"));
-        password = driver.findElement(By.id("Input_Password"));
-        username.sendKeys("guest");
-        password.sendKeys("error");
+        driver.findElement(By.id("Input_Username")).sendKeys("guest");
+        driver.findElement(By.id("Input_Password")).sendKeys("error");
         Thread.sleep(1000);
 
-        loginButton = driver.findElement(By.xpath("//button[@class=\"btn btn-primary\"]"));
-        loginButton.click();
-        Thread.sleep(1000);
+        driver.findElement(By.xpath("//button[@class=\"btn btn-primary\"]")).click();
 
         String errorMsg = driver.findElement(By.xpath("//div[@class=\"text-danger validation-summary-errors\"]")).getText();
         System.out.println(errorMsg);
@@ -72,18 +61,15 @@ public class LoginFormTest {
         Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Identity/Account/Login");
     }
 
-    @Test(priority = 3)
+    @Test(priority = 4)
     public void LoginWithEmptyCredentials() throws InterruptedException{
         driver.navigate().to("http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Identity/Account/Login");
         Thread.sleep(1000);
 
-        username = driver.findElement(By.id("Input_Username"));
-        username.sendKeys("guest");
+        driver.findElement(By.id("Input_Username")).sendKeys("guest");
         Thread.sleep(1000);
 
-        loginButton = driver.findElement(By.xpath("//button[@class=\"btn btn-primary\"]"));
-        loginButton.click();
-        Thread.sleep(1000);
+        driver.findElement(By.xpath("//button[@class=\"btn btn-primary\"]")).click();
 
         String errorMsg = driver.findElement(By.xpath("//div[@class=\"text-danger validation-summary-errors\"]")).getText();
         System.out.println(errorMsg);
@@ -93,14 +79,13 @@ public class LoginFormTest {
         Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Identity/Account/Login");
     }
 
-    @Test(priority = 2)
+    @Test(priority = 3)
     public void RegisterLink() throws InterruptedException{
         driver.navigate().to("http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Identity/Account/Login");
 
-        registerLink = driver.findElement(By.linkText("Register as a new user"));
-        registerLink.click();
+        driver.findElement(By.linkText("Register as a new user")).click();
         Thread.sleep(2000);
 
-        Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Identity/Account/Register");
+        Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Identity/Account/Register?returnUrl=%2F");
     }
 }

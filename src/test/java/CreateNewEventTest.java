@@ -36,9 +36,15 @@ public class CreateNewEventTest {
     public String randomName(int n){
         String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         StringBuilder sb = new StringBuilder(n);
+
         for (int i = 0; i < n; i++) {
             int index = (int)(characters.length() * Math.random());
-            sb.append(characters.charAt(index));
+            if(i != 0){
+                sb.append(Character.toLowerCase(characters.charAt(index)));
+            } else {
+                sb.append(characters.charAt(index));
+            }
+
         }
         return sb.toString();
     }
@@ -47,7 +53,7 @@ public class CreateNewEventTest {
     public void TestingTheNameField2() throws InterruptedException{
         driver.navigate().to("http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Events/Create");
         Clear();
-        driver.findElement(By.id("Name")).sendKeys("as");
+        driver.findElement(By.id("Name")).sendKeys(randomName(2));
         Thread.sleep(1000);
         driver.findElement(By.id("Place")).sendKeys("Burgas");
         Thread.sleep(1000);
@@ -73,7 +79,7 @@ public class CreateNewEventTest {
         Clear();
         driver.findElement(By.id("Name")).sendKeys(randomName(3));
         Thread.sleep(1000);
-        driver.findElement(By.id("Place")).sendKeys("Bourgas");
+        driver.findElement(By.id("Place")).sendKeys("Burgas");
         Thread.sleep(1000);
         driver.findElement(By.id("Start")).sendKeys("01/05/2025");
         driver.findElement(By.id("End")).sendKeys("01/03/2026");
@@ -94,7 +100,7 @@ public class CreateNewEventTest {
         Clear();
         driver.findElement(By.id("Name")).sendKeys(randomName(50));
         Thread.sleep(1000);
-        driver.findElement(By.id("Place")).sendKeys("Bourgas");
+        driver.findElement(By.id("Place")).sendKeys("Burgas");
         Thread.sleep(1000);
         driver.findElement(By.id("Start")).sendKeys("01/05/2025");
         driver.findElement(By.id("End")).sendKeys("01/03/2026");

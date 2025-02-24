@@ -1,7 +1,6 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
@@ -12,27 +11,14 @@ import org.testng.annotations.Test;
 public class RegisterFormTest {
 
     WebDriver driver;
-    WebElement username;
-    WebElement email;
-    WebElement password;
-    WebElement confirmPassword;
-    WebElement firstName;
-    WebElement LastName;
-    WebElement button;
 
 
     @BeforeTest
     public void setup(){
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-        driver.get("http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Identity/Account/Register");
-        username = driver.findElement(By.id("Input_Username"));
-        email = driver.findElement(By.id("Input_Email"));
-        password = driver.findElement(By.id("Input_Password"));
-        confirmPassword = driver.findElement(By.id("Input_ConfirmPassword"));
-        firstName = driver.findElement(By.id("Input_FirstName"));
-        LastName = driver.findElement(By.id("Input_LastName"));
-        button = driver.findElement(By.xpath("//button[@class=\"btn btn-primary\"]"));
+        driver.get("http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/");
+        driver.manage().window().maximize();
     }
 
     @AfterTest
@@ -40,32 +26,46 @@ public class RegisterFormTest {
         driver.quit();
     }
 
-    @Test
-    public void UsernameWithFiveCharacters() throws InterruptedException {
-        username.sendKeys("ardey");
-        email.sendKeys("ardey@test.com");
-        password.sendKeys("ardeq123");
-        confirmPassword.sendKeys("ardeq123");
-        firstName.sendKeys("Ardes");
-        LastName.sendKeys("Simeonov");
+    public String randomName(int n){
+        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        StringBuilder sb = new StringBuilder(n);
+        for (int i = 0; i < n; i++) {
+            int index = (int)(characters.length() * Math.random());
+            sb.append(characters.charAt(index));
+        }
+        return sb.toString().toLowerCase();
+    }
 
-        System.out.println(button.getText());
-        button.click();
+    @Test(priority = 1)
+    public void UsernameWithFiveCharacters() throws InterruptedException {
+        driver.navigate().to("http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Identity/Account/Register");
+        Thread.sleep(1000);
+        driver.findElement(By.id("Input_Username")).sendKeys(randomName(5));
+        driver.findElement(By.id("Input_Email")).sendKeys(randomName(5) + "@test.com");
+        driver.findElement(By.id("Input_Password")).sendKeys("ardeq123");
+        driver.findElement(By.id("Input_ConfirmPassword")).sendKeys("ardeq123");
+        driver.findElement(By.id("Input_FirstName")).sendKeys("Ardes");
+        driver.findElement(By.id("Input_LastName")).sendKeys("Simeonov");
+        Thread.sleep(1000);
+
+        System.out.println(driver.findElement(By.xpath("//button[@class=\"btn btn-primary\"]")).getText());
+        driver.findElement(By.xpath("//button[@class=\"btn btn-primary\"]")).click();
 
         Thread.sleep(1000);
         Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/");
     }
 
-    @Test
+    @Test(priority = 2)
     public void UsernameWithFourCharacters() throws InterruptedException {
-        username.sendKeys("ardb");
-        email.sendKeys("ardeb@test.com");
-        password.sendKeys("ardeb123");
-        confirmPassword.sendKeys("ardeq123");
-        firstName.sendKeys("Ardes");
-        LastName.sendKeys("Simeonov");
-        button.click();
-
+        driver.navigate().to("http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Identity/Account/Register");
+        Thread.sleep(1000);
+        driver.findElement(By.id("Input_Username")).sendKeys(randomName(4));
+        driver.findElement(By.id("Input_Email")).sendKeys(randomName(5) + "@test.com");
+        driver.findElement(By.id("Input_Password")).sendKeys("ardeb123");
+        driver.findElement(By.id("Input_ConfirmPassword")).sendKeys("ardeq123");
+        driver.findElement(By.id("Input_FirstName")).sendKeys("Ardes");
+        driver.findElement(By.id("Input_LastName")).sendKeys("Simeonov");
+        driver.findElement(By.xpath("//button[@class=\"btn btn-primary\"]")).click();
         Thread.sleep(1000);
 
         String error = driver.findElement(By.xpath("//div[@class=\"text-danger validation-summary-errors\"]")).getText();
@@ -77,16 +77,16 @@ public class RegisterFormTest {
         Assert.assertEquals(error, expectedError);
     }
 
-    @Test
+    @Test(priority = 3)
     public void UsernameEmpty() throws InterruptedException {
-        email.sendKeys("ardes@test.com");
-        password.sendKeys("ardes123");
-        confirmPassword.sendKeys("ardes123");
-        firstName.sendKeys("Ardes");
-        LastName.sendKeys("Simeonov");
-        button.click();
-
+        driver.navigate().to("http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Identity/Account/Register");
         Thread.sleep(1000);
+        driver.findElement(By.id("Input_Email")).sendKeys(randomName(5) + "@test.com");
+        driver.findElement(By.id("Input_Password")).sendKeys("ardes123");
+        driver.findElement(By.id("Input_ConfirmPassword")).sendKeys("ardes123");
+        driver.findElement(By.id("Input_FirstName")).sendKeys("Ardes");
+        driver.findElement(By.id("Input_LastName")).sendKeys("Simeonov");
+        driver.findElement(By.xpath("//button[@class=\"btn btn-primary\"]")).click();
 
         String error = driver.findElement(By.xpath("//div[@class=\"text-danger validation-summary-errors\"]")).getText();
         String expectedError = "The Username field is required.";
@@ -97,20 +97,22 @@ public class RegisterFormTest {
         Assert.assertEquals(error, expectedError);
     }
 
-    @Test
+    @Test(priority = 2)
     public void UsernameTaken() throws InterruptedException {
-        username.sendKeys("ardes123");
-        email.sendKeys("ardes@test.com");
-        password.sendKeys("ardes123");
-        confirmPassword.sendKeys("ardes123");
-        firstName.sendKeys("Ardes");
-        LastName.sendKeys("Simeonov");
-        button.click();
+        driver.navigate().to("http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Identity/Account/Register");
+        Thread.sleep(1000);
 
+        driver.findElement(By.id("Input_Username")).sendKeys("guest");
+        driver.findElement(By.id("Input_Email")).sendKeys(randomName(5) + "@test.com");
+        driver.findElement(By.id("Input_Password")).sendKeys("ardes123");
+        driver.findElement(By.id("Input_ConfirmPassword")).sendKeys("ardes123");
+        driver.findElement(By.id("Input_FirstName")).sendKeys("Ardes");
+        driver.findElement(By.id("Input_LastName")).sendKeys("Simeonov");
+        driver.findElement(By.xpath("//button[@class=\"btn btn-primary\"]")).click();
         Thread.sleep(1000);
 
         String error = driver.findElement(By.xpath("//div[@class=\"text-danger validation-summary-errors\"]")).getText();
-        String expectedError = "Username 'ardes123' is already taken.";
+        String expectedError = "Username 'guest' is already taken.";
         System.out.println(error);
         Thread.sleep(1000);
 
