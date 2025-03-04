@@ -56,6 +56,69 @@ Additionally, make sure to have the following browser drivers:
 
 3. Ensure that the correct browser driver (e.g., ChromeDriver) is installed on your system and accessible via the `PATH` environment variable.
 
+## Test Requirements
+
+## **Login Page**
+Users can log in to the application using a **username** and **password**.
+### Requirements:
+- The user **cannot log in** without entering both a username and a password.
+- A default guest account is available:
+  - **Username:** `guest`
+  - **Password:** `guest`
+- If the correct login credentials are entered and the **Log in** button is clicked, the user is **redirected to the Home page**.
+
+## **Homepage**
+The homepage provides key navigation options and displays event-related statistics.
+### **Accessing All Events**
+- The **All Events** page can be accessed in two ways:
+  1. Clicking the **"All Events"** link on the **Homepage**.
+  2. Selecting **"All Events"** from the **Events** dropdown menu.
+
+### **Creating an Event**
+- A new event can be created in two ways:
+  1. Clicking the **"New Event"** link on the **Homepage**.
+  2. Selecting **"Create Event"** from the **Events** dropdown menu.
+
+### **Logging Out**
+- The user must be able to log out by clicking the **"Logout"** button.
+
+### **Event Statistics**
+- The **total number of events** in the system is displayed on the **Homepage**.
+- The **number of events owned by the logged-in user** is displayed on the **Homepage**.
+
+## **Homepage**
+Users can register on the site by providing the following details:  
+- **Username**
+- **Email**
+- **Password**
+- **First Name**
+- **Last Name**
+### **Requirements:**
+- The **username** must be at least **5 characters long** and consist only of **letters and numbers**.
+- The **email** must follow a valid format: `something@something.something` (e.g., `petrov@abv.bg`).  
+  - **Email is required**.
+- The **password** must be between **6 and 20 characters**.
+- The **confirmation password** must match the chosen password.
+- The **first name** is required and must contain **only letters**, with a minimum length of **2 characters**.
+- The **last name** is required and must contain **only letters**, with a minimum length of **2 characters**.
+  
+## **Create New Event**
+Logged-in users can create new events.
+### **Requirements:**
+- Every event must have a **Name**:
+  - The name must be at least **3 characters** and no more than **50 characters**.
+- Every event must have a **Place**:
+  - The place must be at least **3 characters** and no more than **70 characters**.
+- Every event must have a **Start Date** and an **End Date**:
+- The **total number of tickets** must be a **positive number greater than 0**.
+  - The maximum total number of tickets is **1000**.
+- The **ticket price** must be between **0 and 1000** (inclusive).
+- When clicking the **"Create Event"** button:
+  - A new event is created.
+  - The user is redirected to the **All Events** page, where the newly created event is displayed.
+- When clicking the **"Back to List"** button:
+  - The user is redirected to the **All Events** page.
+
 ## Running Tests
 
 You can run the tests in the following ways:
@@ -80,19 +143,12 @@ You can run the tests in the following ways:
 The automated tests are written to validate the following functionalities:
 
 #### 1. **Login Test**
-   - Verify that users can successfully log in using valid credentials.
-   - Ensure proper error message is displayed for invalid login attempts.
 
 #### 2. **Register Test**
-   - Validate the user registration process.
-   - Ensure the system handles invalid data (e.g., missing fields, invalid email format).
 
 #### 3. **Home Page Test**
-   - Confirm that the homepage loads correctly and displays all expected elements.
 
 #### 4. **Create Event Test**
-   - Verify that users can create an event with valid details.
-   - Ensure the system prevents creating events with invalid or missing information.
 
 ### Manual Tests
 
