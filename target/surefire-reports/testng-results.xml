@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="15" passed="13" failed="2" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2025-02-24T18:02:22 EET" name="Surefire suite" finished-at="2025-02-24T18:03:32 EET" duration-ms="70664">
+    <groups>
+    </groups>
+    <test started-at="2025-02-24T18:02:22 EET" name="Surefire test" finished-at="2025-02-24T18:03:32 EET" duration-ms="70664">
+      <class name="RegisterFormTest">
+        <test-method is-config="true" signature="setup()[pri:0, instance:RegisterFormTest@4f209819]" started-at="2025-02-24T18:02:27 EET" name="setup" finished-at="2025-02-24T18:02:29 EET" duration-ms="1095" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="UsernameWithFiveCharacters()[pri:1, instance:RegisterFormTest@4f209819]" started-at="2025-02-24T18:03:17 EET" name="UsernameWithFiveCharacters" finished-at="2025-02-24T18:03:21 EET" duration-ms="4379" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- UsernameWithFiveCharacters -->
+        <test-method signature="UsernameTaken()[pri:2, instance:RegisterFormTest@4f209819]" started-at="2025-02-24T18:03:21 EET" name="UsernameTaken" finished-at="2025-02-24T18:03:26 EET" duration-ms="4357" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- UsernameTaken -->
+        <test-method signature="UsernameWithFourCharacters()[pri:2, instance:RegisterFormTest@4f209819]" started-at="2025-02-24T18:03:26 EET" name="UsernameWithFourCharacters" finished-at="2025-02-24T18:03:29 EET" duration-ms="3243" status="FAIL">
+          <exception class="org.openqa.selenium.NoSuchElementException">
+            <message>
+              <![CDATA[no such element: Unable to locate element: {"method":"xpath","selector":"//div[@class="text-danger validation-summary-errors"]"}
+  (Session info: chrome=133.0.6943.127)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: '4.28.0', revision: 'ac342546e9'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '19'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [4540f5d4384592bf001f29bed087bba6, findElement {value=//div[@class="text-danger validation-summary-errors"], using=xpath}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 133.0.6943.127, chrome: {chromedriverVersion: 133.0.6943.126 (cffa127ce7b..., userDataDir: C:\Users\Miro\AppData\Local...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64358}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:64358/devtoo..., se:cdpVersion: 133.0.6943.127, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 4540f5d4384592bf001f29bed087bba6]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//div[@class="text-danger validation-summary-errors"]"}
+  (Session info: chrome=133.0.6943.127)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: '4.28.0', revision: 'ac342546e9'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '19'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [4540f5d4384592bf001f29bed087bba6, findElement {value=//div[@class="text-danger validation-summary-errors"], using=xpath}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 133.0.6943.127, chrome: {chromedriverVersion: 133.0.6943.126 (cffa127ce7b..., userDataDir: C:\Users\Miro\AppData\Local...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64358}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:64358/devtoo..., se:cdpVersion: 133.0.6943.127, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 4540f5d4384592bf001f29bed087bba6
+at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:67)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:484)
+at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:215)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
+at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
+at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+at RegisterFormTest.UsernameWithFourCharacters(RegisterFormTest.java:71)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:739)
+at org.testng.TestRunner.run(TestRunner.java:614)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:151)
+at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.executeMulti(TestNGDirectoryTestSuite.java:192)
+at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.execute(TestNGDirectoryTestSuite.java:93)
+at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:155)
+at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:456)
+at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:169)
+at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
+at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- UsernameWithFourCharacters -->
+        <test-method signature="UsernameEmpty()[pri:3, instance:RegisterFormTest@4f209819]" started-at="2025-02-24T18:03:29 EET" name="UsernameEmpty" finished-at="2025-02-24T18:03:31 EET" duration-ms="2547" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- UsernameEmpty -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:RegisterFormTest@4f209819]" started-at="2025-02-24T18:03:32 EET" name="tearDown" finished-at="2025-02-24T18:03:32 EET" duration-ms="168" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- RegisterFormTest -->
+      <class name="LoginFormTest">
+        <test-method is-config="true" signature="setup()[pri:0, instance:LoginFormTest@3d74bf60]" started-at="2025-02-24T18:02:26 EET" name="setup" finished-at="2025-02-24T18:02:27 EET" duration-ms="1143" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="LoginWithValidCredentials()[pri:1, instance:LoginFormTest@3d74bf60]" started-at="2025-02-24T18:03:03 EET" name="LoginWithValidCredentials" finished-at="2025-02-24T18:03:07 EET" duration-ms="4121" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginWithValidCredentials -->
+        <test-method signature="LoginWithInvalidCredentials()[pri:2, instance:LoginFormTest@3d74bf60]" started-at="2025-02-24T18:03:07 EET" name="LoginWithInvalidCredentials" finished-at="2025-02-24T18:03:11 EET" duration-ms="4084" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginWithInvalidCredentials -->
+        <test-method signature="RegisterLink()[pri:3, instance:LoginFormTest@3d74bf60]" started-at="2025-02-24T18:03:11 EET" name="RegisterLink" finished-at="2025-02-24T18:03:14 EET" duration-ms="2386" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- RegisterLink -->
+        <test-method signature="LoginWithEmptyCredentials()[pri:4, instance:LoginFormTest@3d74bf60]" started-at="2025-02-24T18:03:14 EET" name="LoginWithEmptyCredentials" finished-at="2025-02-24T18:03:17 EET" duration-ms="3340" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginWithEmptyCredentials -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:LoginFormTest@3d74bf60]" started-at="2025-02-24T18:03:32 EET" name="tearDown" finished-at="2025-02-24T18:03:32 EET" duration-ms="189" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- LoginFormTest -->
+      <class name="HomeGroupTest">
+        <test-method is-config="true" signature="setup()[pri:0, instance:HomeGroupTest@15c43bd9]" started-at="2025-02-24T18:02:24 EET" name="setup" finished-at="2025-02-24T18:02:26 EET" duration-ms="2008" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="CreateNewEvent()[pri:1, instance:HomeGroupTest@15c43bd9]" started-at="2025-02-24T18:02:51 EET" name="CreateNewEvent" finished-at="2025-02-24T18:02:54 EET" duration-ms="2414" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CreateNewEvent -->
+        <test-method signature="ViewAllEvents()[pri:1, instance:HomeGroupTest@15c43bd9]" started-at="2025-02-24T18:02:54 EET" name="ViewAllEvents" finished-at="2025-02-24T18:02:56 EET" duration-ms="2474" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ViewAllEvents -->
+        <test-method signature="DropDownCreateEvent()[pri:2, instance:HomeGroupTest@15c43bd9]" started-at="2025-02-24T18:02:56 EET" name="DropDownCreateEvent" finished-at="2025-02-24T18:02:59 EET" duration-ms="3316" status="FAIL">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[expected [http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Events/Create] but found [http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: expected [http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Events/Create] but found [http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/]
+at org.testng.Assert.fail(Assert.java:111)
+at org.testng.Assert.failNotEquals(Assert.java:1578)
+at org.testng.Assert.assertEqualsImpl(Assert.java:150)
+at org.testng.Assert.assertEquals(Assert.java:132)
+at org.testng.Assert.assertEquals(Assert.java:656)
+at org.testng.Assert.assertEquals(Assert.java:666)
+at HomeGroupTest.DropDownCreateEvent(HomeGroupTest.java:58)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:739)
+at org.testng.TestRunner.run(TestRunner.java:614)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:151)
+at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.executeMulti(TestNGDirectoryTestSuite.java:192)
+at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.execute(TestNGDirectoryTestSuite.java:93)
+at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:155)
+at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:456)
+at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:169)
+at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
+at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- DropDownCreateEvent -->
+        <test-method signature="DropDownViewAll()[pri:2, instance:HomeGroupTest@15c43bd9]" started-at="2025-02-24T18:02:59 EET" name="DropDownViewAll" finished-at="2025-02-24T18:03:03 EET" duration-ms="3706" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- DropDownViewAll -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:HomeGroupTest@15c43bd9]" started-at="2025-02-24T18:03:32 EET" name="tearDown" finished-at="2025-02-24T18:03:32 EET" duration-ms="184" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- HomeGroupTest -->
+      <class name="CreateNewEventTest">
+        <test-method is-config="true" signature="setup()[pri:0, instance:CreateNewEventTest@1725dc0f]" started-at="2025-02-24T18:02:22 EET" name="setup" finished-at="2025-02-24T18:02:24 EET" duration-ms="2751" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TestingTheNameField2()[pri:1, instance:CreateNewEventTest@1725dc0f]" started-at="2025-02-24T18:02:29 EET" name="TestingTheNameField2" finished-at="2025-02-24T18:02:36 EET" duration-ms="7359" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TestingTheNameField2 -->
+        <test-method signature="TestingTheNameField3()[pri:1, instance:CreateNewEventTest@1725dc0f]" started-at="2025-02-24T18:02:36 EET" name="TestingTheNameField3" finished-at="2025-02-24T18:02:43 EET" duration-ms="7538" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TestingTheNameField3 -->
+        <test-method signature="TestingTheNameField50()[pri:2, instance:CreateNewEventTest@1725dc0f]" started-at="2025-02-24T18:02:43 EET" name="TestingTheNameField50" finished-at="2025-02-24T18:02:51 EET" duration-ms="7612" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TestingTheNameField50 -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:CreateNewEventTest@1725dc0f]" started-at="2025-02-24T18:03:31 EET" name="tearDown" finished-at="2025-02-24T18:03:32 EET" duration-ms="183" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- CreateNewEventTest -->
+    </test> <!-- Surefire test -->
+  </suite> <!-- Surefire suite -->
+</testng-results>

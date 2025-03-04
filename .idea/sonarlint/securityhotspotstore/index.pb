@@ -1,7 +1,27 @@
 
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
-S
-#src/main/java/org/example/Main.java,0\b\0ba1b9c7a4878802f938e331cc2d8a042087ec6b
-P
- src/test/java/LoginFormTest.java,2\4\241fee62c0f2af07c1e9e5811a15e4d68d8b72af
+U
+%src/main/java/com/eventures/Main.java,b\8\b874414b354954c550263c2904dcea0ed8329e0d
+h
+8src/test/java/com/eventures/pages/ViewAllEventsPage.java,8\e\8e75df1ef222491aaeb74d5edd3128384d0fa9d3
+[
++src/test/java/com/eventures/base/Utils.java,8\6\8674f0e0ae0ab30c18f1d31f491391238818aa1d
+c
+3src/test/java/com/eventures/pages/RegisterPage.java,d\a\da6bbafe47d68c04c16f5d67204681f33836e3aa
+d
+4src/test/java/com/eventures/tests/LoginFormTest.java,f\b\fbb6cbe72287ec9e3d846e8dca1ef61dc606424a
+g
+7src/test/java/com/eventures/tests/RegisterFormTest.java,4\9\491e7ce7f25dba947d87b21d5ad587a579ad020a
+i
+9src/test/java/com/eventures/tests/CreateNewEventTest.java,6\5\65c187d3e1f7f7d01030814fd68326eb9b2dfae1
+`
+0src/test/java/com/eventures/pages/LoginPage.java,7\6\76e1487efcdaa84cb78e73fca4b48fadd3941857
+^
+.src/test/java/com/eventures/base/BaseTest.java,7\3\739063d9f795bebbde3b935ec24962555fe8a80d
+d
+4src/test/java/com/eventures/tests/HomeGroupTest.java,4\d\4db02031f3e2a46a1aaa63fe8580dc7facdea8fb
+d
+4src/test/java/com/eventures/pages/HomeGroupPage.java,8\b\8b13ef413ab51c2c4795ced034616cb29604fbbd
+f
+6src/test/java/com/eventures/pages/CreateEventPage.java,f\d\fdcb75170675a6df3ac6f5815a9e42cea561123e
