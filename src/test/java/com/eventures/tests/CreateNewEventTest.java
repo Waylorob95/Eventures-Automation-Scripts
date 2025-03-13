@@ -14,15 +14,6 @@ public class CreateNewEventTest extends BaseTest {
     private LoginPage loginPage;
     private CreateEventPage createEventPage;
 
-    private static String eventName;
-    private static String placeName;
-    private static String startDate;
-    private static String endDate;
-    private static String price;
-    private static String totalTickets;
-
-
-
     @BeforeClass
     public void loginToApp() {
         loginPage = new LoginPage(driver);
@@ -40,19 +31,12 @@ public class CreateNewEventTest extends BaseTest {
         createEventPage.Open();
         createEventPage.Clear();
 
-        eventName = Utils.generateString(5);
-        placeName = Utils.generateString(7);
-        startDate = "05/05/2025";
-        endDate = "05/05/2026";
-        price = "10";
-        totalTickets = "1000";
-
-        createEventPage.EnterName(eventName);
-        createEventPage.EnterPlace(placeName);
-        createEventPage.EnterStartDate(startDate);
-        createEventPage.EnterEndDate(endDate);
-        createEventPage.EnterPrice(price);
-        createEventPage.EnterTotalTickets(totalTickets);
+        createEventPage.EnterName(Utils.generateString(5));
+        createEventPage.EnterPlace(Utils.generateString(7));
+        createEventPage.EnterStartDate("05/05/2025");
+        createEventPage.EnterEndDate("05/05/2026");
+        createEventPage.EnterPrice("10");
+        createEventPage.EnterTotalTickets("1000");
         createEventPage.ClickCreate();
 
         Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Events/All");
@@ -62,19 +46,12 @@ public class CreateNewEventTest extends BaseTest {
         createEventPage.Open();
         createEventPage.Clear();
 
-        eventName = Utils.generateString(2);
-        placeName = Utils.generateString(7);
-        startDate = "05/05/2025";
-        endDate = "05/05/2026";
-        price = "10";
-        totalTickets = "1000";
-
-        createEventPage.EnterName(eventName);
-        createEventPage.EnterPlace(placeName);
-        createEventPage.EnterStartDate(startDate);
-        createEventPage.EnterEndDate(endDate);
-        createEventPage.EnterPrice(price);
-        createEventPage.EnterTotalTickets(totalTickets);
+        createEventPage.EnterName(Utils.generateString(2));
+        createEventPage.EnterPlace(Utils.generateString(7));
+        createEventPage.EnterStartDate("05/05/2025");
+        createEventPage.EnterEndDate("05/05/2026");
+        createEventPage.EnterPrice("10");
+        createEventPage.EnterTotalTickets("1000");
         createEventPage.ClickCreate();
 
         Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Events/Create");
@@ -86,17 +63,11 @@ public class CreateNewEventTest extends BaseTest {
         createEventPage.Open();
         createEventPage.Clear();
 
-        placeName = Utils.generateString(7);
-        startDate = "05/05/2025";
-        endDate = "05/05/2026";
-        price = "10";
-        totalTickets = "1000";
-
-        createEventPage.EnterPlace(placeName);
-        createEventPage.EnterStartDate(startDate);
-        createEventPage.EnterEndDate(endDate);
-        createEventPage.EnterPrice(price);
-        createEventPage.EnterTotalTickets(totalTickets);
+        createEventPage.EnterPlace(Utils.generateString(7));
+        createEventPage.EnterStartDate("05/05/2025");
+        createEventPage.EnterEndDate("05/05/2026");
+        createEventPage.EnterPrice("10");
+        createEventPage.EnterTotalTickets("1000");
         createEventPage.ClickCreate();
 
         Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Events/Create");
@@ -108,19 +79,12 @@ public class CreateNewEventTest extends BaseTest {
         createEventPage.Open();
         createEventPage.Clear();
 
-        eventName = Utils.generateString(5);
-        placeName = Utils.generateString(2);
-        startDate = "05/05/2025";
-        endDate = "05/05/2026";
-        price = "10";
-        totalTickets = "1000";
-
-        createEventPage.EnterName(eventName);
-        createEventPage.EnterPlace(placeName);
-        createEventPage.EnterStartDate(startDate);
-        createEventPage.EnterEndDate(endDate);
-        createEventPage.EnterPrice(price);
-        createEventPage.EnterTotalTickets(totalTickets);
+        createEventPage.EnterName(Utils.generateString(5));
+        createEventPage.EnterPlace(Utils.generateString(2));
+        createEventPage.EnterStartDate("05/05/2025");
+        createEventPage.EnterEndDate("05/05/2026");
+        createEventPage.EnterPrice("10");
+        createEventPage.EnterTotalTickets("1000");
         createEventPage.ClickCreate();
 
         Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Events/Create");
@@ -132,17 +96,11 @@ public class CreateNewEventTest extends BaseTest {
         createEventPage.Open();
         createEventPage.Clear();
 
-        eventName = Utils.generateString(5);
-        startDate = "05/05/2025";
-        endDate = "05/05/2026";
-        price = "10";
-        totalTickets = "1000";
-
-        createEventPage.EnterName(eventName);
-        createEventPage.EnterStartDate(startDate);
-        createEventPage.EnterEndDate(endDate);
-        createEventPage.EnterPrice(price);
-        createEventPage.EnterTotalTickets(totalTickets);
+        createEventPage.EnterName(Utils.generateString(5));
+        createEventPage.EnterStartDate("05/05/2025");
+        createEventPage.EnterEndDate("05/05/2026");
+        createEventPage.EnterPrice("10");
+        createEventPage.EnterTotalTickets("1000");
         createEventPage.ClickCreate();
 
         Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Events/Create");
@@ -154,19 +112,12 @@ public class CreateNewEventTest extends BaseTest {
         createEventPage.Open();
         createEventPage.Clear();
 
-        eventName = Utils.generateString(5);
-        placeName = Utils.generateString(7);
-        startDate = "05/05/2025";
-        endDate = "05/05/2026";
-        price = "10";
-        totalTickets = "0";
-
-        createEventPage.EnterName(eventName);
-        createEventPage.EnterPlace(placeName);
-        createEventPage.EnterStartDate(startDate);
-        createEventPage.EnterEndDate(endDate);
-        createEventPage.EnterPrice(price);
-        createEventPage.EnterTotalTickets(totalTickets);
+        createEventPage.EnterName(Utils.generateString(5));
+        createEventPage.EnterPlace(Utils.generateString(7));
+        createEventPage.EnterStartDate("05/05/2025");
+        createEventPage.EnterEndDate("05/05/2026");
+        createEventPage.EnterPrice("10");
+        createEventPage.EnterTotalTickets("0");
         createEventPage.ClickCreate();
 
         Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Events/Create");
@@ -177,19 +128,12 @@ public class CreateNewEventTest extends BaseTest {
         createEventPage.Open();
         createEventPage.Clear();
 
-        eventName = Utils.generateString(5);
-        placeName = Utils.generateString(7);
-        startDate = "05/05/2025";
-        endDate = "05/05/2026";
-        price = "1100";
-        totalTickets = "1000";
-
-        createEventPage.EnterName(eventName);
-        createEventPage.EnterPlace(placeName);
-        createEventPage.EnterStartDate(startDate);
-        createEventPage.EnterEndDate(endDate);
-        createEventPage.EnterPrice(price);
-        createEventPage.EnterTotalTickets(totalTickets);
+        createEventPage.EnterName(Utils.generateString(5));
+        createEventPage.EnterPlace(Utils.generateString(7));
+        createEventPage.EnterStartDate("05/05/2025");
+        createEventPage.EnterEndDate("05/05/2026");
+        createEventPage.EnterPrice("1100");
+        createEventPage.EnterTotalTickets("1000");
         createEventPage.ClickCreate();
 
         Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Events/Create");

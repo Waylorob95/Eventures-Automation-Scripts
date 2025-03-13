@@ -3,8 +3,6 @@
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 U
 %src/main/java/com/eventures/Main.java,b\8\b874414b354954c550263c2904dcea0ed8329e0d
-h
-8src/test/java/com/eventures/pages/ViewAllEventsPage.java,8\e\8e75df1ef222491aaeb74d5edd3128384d0fa9d3
 [
 +src/test/java/com/eventures/base/Utils.java,8\6\8674f0e0ae0ab30c18f1d31f491391238818aa1d
 c

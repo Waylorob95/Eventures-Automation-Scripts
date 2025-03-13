@@ -11,9 +11,6 @@ import org.testng.annotations.Test;
 public class RegisterFormTest extends BaseTest {
 
     private RegisterPage registerPage;
-    private String usernameTest;
-    private String passwordTest;
-
 
     @BeforeClass
     public void RegisterPageInit() {
@@ -22,9 +19,8 @@ public class RegisterFormTest extends BaseTest {
     @Test(priority = 1)
     public void RegisterWithValidData() {
         registerPage.Open();
-        usernameTest = Utils.generateString(5);
 
-        registerPage.EnterUsername(usernameTest);
+        registerPage.EnterUsername(Utils.generateString(5));
         registerPage.EnterEmail(Utils.generateString(5) + "@test.com");
         registerPage.EnterPassword("test123");
         registerPage.ConfirmPassword("test123");
@@ -39,9 +35,8 @@ public class RegisterFormTest extends BaseTest {
     @Test(priority = 2)
     public void RegisterWithShortUsername() {
         registerPage.Open();
-        usernameTest = Utils.generateString(5);
 
-        registerPage.EnterUsername(usernameTest);
+        registerPage.EnterUsername(Utils.generateString(5));
         registerPage.EnterEmail(Utils.generateString(4) + "@test.com");
         registerPage.EnterPassword("test123");
         registerPage.ConfirmPassword("test123");
@@ -56,9 +51,8 @@ public class RegisterFormTest extends BaseTest {
     @Test(priority = 2)
     public void RegisterWithInvalidUsernameWithSpecialCharacter() {
         registerPage.Open();
-        usernameTest = Utils.generateString(5) + "$";
 
-        registerPage.EnterUsername(usernameTest);
+        registerPage.EnterUsername(Utils.generateString(5) + "$");
         registerPage.EnterEmail(Utils.generateString(4) + "@test.com");
         registerPage.EnterPassword("test123");
         registerPage.ConfirmPassword("test123");
@@ -74,9 +68,8 @@ public class RegisterFormTest extends BaseTest {
     @Test(priority = 2)
     public void RegisterWithInvalidUsernameWithSpecialCharacters() {
         registerPage.Open();
-        usernameTest = Utils.generateString(4) + "@";
 
-        registerPage.EnterUsername(usernameTest);
+        registerPage.EnterUsername(Utils.generateString(4) + "@");
         registerPage.EnterEmail(Utils.generateString(4) + "@test.com");
         registerPage.EnterPassword("test123");
         registerPage.ConfirmPassword("test123");
@@ -109,12 +102,11 @@ public class RegisterFormTest extends BaseTest {
     @Test(priority = 2)
     public void RegisterWithShortPassword() {
         registerPage.Open();
-        passwordTest = Utils.generateString(5);
 
         registerPage.EnterUsername(Utils.generateString(5));
         registerPage.EnterEmail(Utils.generateString(4) + "@test.com");
-        registerPage.EnterPassword(passwordTest);
-        registerPage.ConfirmPassword(passwordTest);
+        registerPage.EnterPassword(Utils.generateString(5));
+        registerPage.ConfirmPassword(Utils.generateString(5));
         registerPage.EnterFirstName("Test");
         registerPage.EnterSecondName("Test");
 
@@ -127,12 +119,11 @@ public class RegisterFormTest extends BaseTest {
     @Test(priority = 1)
     public void RegisterWithWrongConfirmPassword() {
         registerPage.Open();
-        passwordTest = Utils.generateString(6);
 
         registerPage.EnterUsername(Utils.generateString(5));
         registerPage.EnterEmail(Utils.generateString(4) + "@test.com");
-        registerPage.EnterPassword(passwordTest);
-        registerPage.ConfirmPassword(passwordTest + "1");
+        registerPage.EnterPassword(Utils.generateString(6));
+        registerPage.ConfirmPassword(Utils.generateString(6) + "1");
         registerPage.EnterFirstName("Test");
         registerPage.EnterSecondName("Test");
 
