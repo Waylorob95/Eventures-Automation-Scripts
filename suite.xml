@@ -1,0 +1,26 @@
+<suite name="Eventures Test suite">
+    <!-- Test definitions -->
+    <test name="Login Test">
+        <classes>
+            <class name="com.eventures.tests.RegisterFormTest"/>
+        </classes>
+    </test>
+
+    <test name="Registration Test">
+        <classes>
+            <class name="com.eventures.tests.LoginFormTest"/>
+        </classes>
+    </test>
+
+    <test name="Home Group Page">
+        <classes>
+            <class name="com.eventures.tests.HomeGroupTest"/>
+        </classes>
+    </test>
+
+    <test name="Create Event Test">
+        <classes>
+            <class name="com.eventures.tests.CreateNewEventTest"/>
+        </classes>
+    </test>
+</suite>
