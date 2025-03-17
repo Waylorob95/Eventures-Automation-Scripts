@@ -18,10 +18,10 @@ public class HomeGroupTest extends BaseTest {
     @BeforeClass
     public void loginToApp() {
         loginPage = new LoginPage(driver);
-        loginPage.Open();
-        loginPage.EnterUsername(username);
-        loginPage.EnterPassword(password);
-        loginPage.ClickLogin();
+        loginPage.openPage();
+        loginPage.enterUsername(username);
+        loginPage.enterPassword(password);
+        loginPage.clickLogin();
 
         homePage = new HomeGroupPage(driver);
     }
@@ -31,7 +31,8 @@ public class HomeGroupTest extends BaseTest {
         homePage.Open();
         homePage.ClickNewEventLink();
 
-        Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Events/Create");
+        Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Events/Create", "User is not redirected to the create new event page.");
+        System.out.println("User is redirected to Create New Event page.");
     }
 
     @Test(priority = 1)
@@ -39,7 +40,8 @@ public class HomeGroupTest extends BaseTest {
         homePage.Open();
         homePage.ClickViewAllEventsLink();
 
-        Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Events/All");
+        Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Events/All", "User is not redirected to the view all events page.");
+        System.out.println("User is redirected to View All Events page.");
     }
 
     @Test(priority = 2)
@@ -49,7 +51,8 @@ public class HomeGroupTest extends BaseTest {
         homePage.ClickCreateEventsNav();
 
 
-        Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Events/Create");
+        Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Events/Create", "User is not redirected to the create new event page.");
+        System.out.println("User is redirected to Create New Event page.");
     }
 
     @Test(priority = 2)
@@ -58,15 +61,17 @@ public class HomeGroupTest extends BaseTest {
         homePage.ClickNavLink();
         homePage.ClickViewAllEventsNav();
 
-        Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Events/All");
+        Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Events/All", "User is not redirected to the view all events page.");
+        System.out.println("User is redirected to View All Events page.");
     }
 
-    @Test(priority = 2)
+    @Test(priority = 3)
     public void LogOut() {
         homePage.Open();
         homePage.ClickLogOutLink();
 
-        Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/");
+        Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/", "User did not logged out.");
+        System.out.println("User logged out.");
     }
 
     @Test(priority = 2)
@@ -74,7 +79,8 @@ public class HomeGroupTest extends BaseTest {
         homePage.Open();
         homePage.GetUsernameText();
 
-        Assert.assertEquals(homePage.GetUsernameText(), "Welcome, " + username);
+        Assert.assertEquals(homePage.GetUsernameText(), "Welcome, " + username, "The text does not match.");
+        System.out.println("The text is correct.");
     }
 
     @Test(priority = 2)
@@ -86,7 +92,8 @@ public class HomeGroupTest extends BaseTest {
         List<WebElement> rows = driver.findElements(By.xpath("//table/tbody/tr"));
         int actualNumberOfEvents = rows.size();
 
-        Assert.assertEquals(numberOfEvents, actualNumberOfEvents);
+        Assert.assertEquals(numberOfEvents, actualNumberOfEvents, "The number of events is not correct.");
+        System.out.println("The number of events is correct.");
     }
 
 

@@ -18,127 +18,170 @@ public class RegisterFormTest extends BaseTest {
     }
     @Test(priority = 1)
     public void RegisterWithValidData() {
-        registerPage.Open();
+        registerPage.openPage();
 
-        registerPage.EnterUsername(Utils.generateString(5));
-        registerPage.EnterEmail(Utils.generateString(5) + "@test.com");
-        registerPage.EnterPassword("test123");
-        registerPage.ConfirmPassword("test123");
-        registerPage.EnterFirstName("Test");
-        registerPage.EnterSecondName("Test");
+        registerPage.enterUsername(Utils.generateString(5));
+        registerPage.enterEmail(Utils.generateString(5) + "@test.com");
+        registerPage.enterPassword("test123");
+        registerPage.confirmPassword("test123");
+        registerPage.enterFirstName("Test");
+        registerPage.enterSecondName("Test");
 
-        registerPage.ClickRegister();
+        registerPage.clickRegister();
 
         Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/");
+        System.out.println("User was registered successfully!");
     }
 
     @Test(priority = 2)
     public void RegisterWithShortUsername() {
-        registerPage.Open();
+        registerPage.openPage();
 
-        registerPage.EnterUsername(Utils.generateString(5));
-        registerPage.EnterEmail(Utils.generateString(4) + "@test.com");
-        registerPage.EnterPassword("test123");
-        registerPage.ConfirmPassword("test123");
-        registerPage.EnterFirstName("Test");
-        registerPage.EnterSecondName("Test");
+        registerPage.enterUsername(Utils.generateString(4));
+        registerPage.enterEmail(Utils.generateString(4) + "@test.com");
+        registerPage.enterPassword("test123");
+        registerPage.confirmPassword("test123");
+        registerPage.enterFirstName("Test");
+        registerPage.enterSecondName("Test");
 
-        registerPage.ClickRegister();
+        registerPage.clickRegister();
 
-        Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Identity/Account/Register");
-        Assert.assertEquals(registerPage.GetErrorMessage(), "The Username must be at least 5 characters long");
+        if(driver.getCurrentUrl().equals("http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Identity/Account/Register")){
+            String errorMessage = registerPage.getErrorMessage();
+            Assert.assertFalse(errorMessage.isEmpty(), "Expected error message, but none found!");
+            Assert.assertEquals(errorMessage, "The Username must be at least 5 characters long.", "Error message did not match!");
+            System.out.println("Error message: " + errorMessage);
+        } else {
+            Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Identity/Account/Register", "User was registered successfully using short username and was redirected to the home page.");
+        }
     }
     @Test(priority = 2)
     public void RegisterWithInvalidUsernameWithSpecialCharacter() {
-        registerPage.Open();
+        registerPage.openPage();
+        username = Utils.generateString(5) + "$";
 
-        registerPage.EnterUsername(Utils.generateString(5) + "$");
-        registerPage.EnterEmail(Utils.generateString(4) + "@test.com");
-        registerPage.EnterPassword("test123");
-        registerPage.ConfirmPassword("test123");
-        registerPage.EnterFirstName("Test");
-        registerPage.EnterSecondName("Test");
+        registerPage.enterUsername(username);
+        registerPage.enterEmail(Utils.generateString(4) + "@test.com");
+        registerPage.enterPassword("test123");
+        registerPage.confirmPassword("test123");
+        registerPage.enterFirstName("Test");
+        registerPage.enterSecondName("Test");
 
-        registerPage.ClickRegister();
+        registerPage.clickRegister();
 
-        Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Identity/Account/Register");
-        Assert.assertTrue(registerPage.GetErrorMessage() != null, "Username is invalid");
+        if(driver.getCurrentUrl().equals("http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Identity/Account/Register")){
+            String errorMessage = registerPage.getErrorMessage();
+            Assert.assertFalse(errorMessage.isEmpty(), "Expected error message, but none found!");
+            Assert.assertEquals(errorMessage, "Username '" + username + "' is invalid, can only contain letters or digits.", "Error message did not match!");
+            System.out.println("Error message: " + errorMessage);
+        } else {
+            Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Identity/Account/Register", "User was registered successfully using username that contains special character and was redirected to the home page.");
+        }
     }
 
     @Test(priority = 2)
     public void RegisterWithInvalidUsernameWithSpecialCharacters() {
-        registerPage.Open();
+        registerPage.openPage();
+        username = Utils.generateString(5) + "@";
 
-        registerPage.EnterUsername(Utils.generateString(4) + "@");
-        registerPage.EnterEmail(Utils.generateString(4) + "@test.com");
-        registerPage.EnterPassword("test123");
-        registerPage.ConfirmPassword("test123");
-        registerPage.EnterFirstName("Test");
-        registerPage.EnterSecondName("Test");
 
-        registerPage.ClickRegister();
+        registerPage.enterUsername(username);
+        registerPage.enterEmail(Utils.generateString(4) + "@test.com");
+        registerPage.enterPassword("test123");
+        registerPage.confirmPassword("test123");
+        registerPage.enterFirstName("Test");
+        registerPage.enterSecondName("Test");
 
-        Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Identity/Account/Register");
-        Assert.assertTrue(registerPage.GetErrorMessage() != null, "Username is invalid");
+        registerPage.clickRegister();
+
+        if(driver.getCurrentUrl().equals("http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Identity/Account/Register")){
+            String errorMessage = registerPage.getErrorMessage();
+            Assert.assertFalse(errorMessage.isEmpty(), "Expected error message, but none found!");
+            Assert.assertEquals(errorMessage, "Username '" + username + "' is invalid, can only contain letters or digits.", "Error message did not match!");
+            System.out.println("Error message: " + errorMessage);
+        } else {
+            Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Identity/Account/Register", "User was registered successfully using username that contains special character and was redirected to the home page.");
+        }
     }
 
     @Test(priority = 2)
     public void RegisterWithTakenUsername() {
-        registerPage.Open();
+        registerPage.openPage();
+        username = "guest";
 
-        registerPage.EnterUsername(username);
-        registerPage.EnterEmail(Utils.generateString(5) + "@test.com");
-        registerPage.EnterPassword("test123");
-        registerPage.ConfirmPassword("test123");
-        registerPage.EnterFirstName("Test");
-        registerPage.EnterSecondName("Test");
+        registerPage.enterUsername(username);
+        registerPage.enterEmail(Utils.generateString(5) + "@test.com");
+        registerPage.enterPassword("test123");
+        registerPage.confirmPassword("test123");
+        registerPage.enterFirstName("Test");
+        registerPage.enterSecondName("Test");
 
-        registerPage.ClickRegister();
+        registerPage.clickRegister();
 
-        Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Identity/Account/Register");
-        Assert.assertEquals(registerPage.GetErrorMessage(), "Username 'guest' is already taken.");
+        if(driver.getCurrentUrl().equals("http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Identity/Account/Register")){
+            String errorMessage = registerPage.getErrorMessage();
+            Assert.assertFalse(errorMessage.isEmpty(), "Expected error message, but none found!");
+            Assert.assertEquals(errorMessage, "Username '" + username + "' is already taken.", "Error message did not match!");
+            System.out.println("Error message: " + errorMessage);
+        } else {
+            Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Identity/Account/Register", "User was registered successfully with already registered username");
+        }
     }
 
     @Test(priority = 2)
     public void RegisterWithShortPassword() {
-        registerPage.Open();
+        registerPage.openPage();
+        password = (Utils.generateString(5));
 
-        registerPage.EnterUsername(Utils.generateString(5));
-        registerPage.EnterEmail(Utils.generateString(4) + "@test.com");
-        registerPage.EnterPassword(Utils.generateString(5));
-        registerPage.ConfirmPassword(Utils.generateString(5));
-        registerPage.EnterFirstName("Test");
-        registerPage.EnterSecondName("Test");
+        registerPage.enterUsername(Utils.generateString(5));
+        registerPage.enterEmail(Utils.generateString(4) + "@test.com");
+        registerPage.enterPassword(password);
+        registerPage.confirmPassword(password);
+        registerPage.enterFirstName("Test");
+        registerPage.enterSecondName("Test");
 
-        registerPage.ClickRegister();
+        registerPage.clickRegister();
 
-        Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Identity/Account/Register");
-        Assert.assertEquals(registerPage.GetErrorMessage(), "The Password must be at least 6 and at max 20 characters long.");
+        if(driver.getCurrentUrl().equals("http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Identity/Account/Register")){
+            String errorMessage = registerPage.getErrorMessage();
+            Assert.assertFalse(errorMessage.isEmpty(), "Expected error message, but none found!");
+            Assert.assertEquals(errorMessage, "The Password must be at least 6 and at max 20 characters long.", "Error message did not match!");
+            System.out.println("Error message: " + errorMessage);
+        } else {
+            Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Identity/Account/Register", "User was registered successfully using short password");
+        }
     }
 
     @Test(priority = 1)
     public void RegisterWithWrongConfirmPassword() {
-        registerPage.Open();
+        registerPage.openPage();
+        password = (Utils.generateString(6));
 
-        registerPage.EnterUsername(Utils.generateString(5));
-        registerPage.EnterEmail(Utils.generateString(4) + "@test.com");
-        registerPage.EnterPassword(Utils.generateString(6));
-        registerPage.ConfirmPassword(Utils.generateString(6) + "1");
-        registerPage.EnterFirstName("Test");
-        registerPage.EnterSecondName("Test");
+        registerPage.enterUsername(Utils.generateString(5));
+        registerPage.enterEmail(Utils.generateString(4) + "@test.com");
+        registerPage.enterPassword(password);
+        registerPage.confirmPassword(password + "123");
+        registerPage.enterFirstName("Test");
+        registerPage.enterSecondName("Test");
 
-        registerPage.ClickRegister();
+        registerPage.clickRegister();
 
-        Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Identity/Account/Register");
-        Assert.assertEquals(registerPage.GetErrorMessage(), "The passwords does not match.");
+        if(driver.getCurrentUrl().equals("http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Identity/Account/Register")){
+            String errorMessage = registerPage.getErrorMessage();
+            Assert.assertFalse(errorMessage.isEmpty(), "Expected error message, but none found!");
+            Assert.assertEquals(errorMessage, "The passwords does not match.", "Error message did not match!");
+        } else {
+            Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Identity/Account/Register", "User was registered successfully without confirming the password.");
+        }
     }
 
     @Test(priority = 3)
     public void HomeLink() {
-        registerPage.Open();
-        registerPage.ClickHome();
+        registerPage.openPage();
+        registerPage.clickHome();
 
-        Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/");
+        Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/", "User is not redirected to the home page.");
+        System.out.println("User redirected to the home page.");
     }
 
 }

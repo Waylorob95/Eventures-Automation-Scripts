@@ -1,7 +1,12 @@
 package com.eventures.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class RegisterPage {
     private WebDriver driver;
@@ -16,50 +21,61 @@ public class RegisterPage {
     private By lastNameField = By.id("Input_LastName");
     private By registerButton = By.xpath("//button[@class=\"btn btn-primary\"]");
     private By homeLink = By.linkText("Home");
-    private By errorMessage = By.xpath("//div[@class=\"text-danger validation-summary-errors\"]");
 
 
     public RegisterPage(WebDriver driver) {
         this.driver = driver;
     }
 
-    public void Open() {
+    public void openPage() {
         driver.get(url);
     }
 
-    public void EnterUsername(String username) {
+    public void enterUsername(String username) {
         driver.findElement(usernameField).sendKeys(username);
     }
 
-    public void EnterEmail(String email) {
+    public void enterEmail(String email) {
         driver.findElement(emailField).sendKeys(email);
     }
 
-    public void EnterPassword(String password) {
+    public void enterPassword(String password) {
         driver.findElement(passwordField).sendKeys(password);
     }
 
-    public void ConfirmPassword(String confirmPassword) {
+    public void confirmPassword(String confirmPassword) {
         driver.findElement(confirmPasswordField).sendKeys(confirmPassword);
     }
 
-    public void EnterFirstName(String firstName) {
+    public void enterFirstName(String firstName) {
         driver.findElement(firstNameField).sendKeys(firstName);
     }
 
-    public void EnterSecondName(String secondName) {
+    public void enterSecondName(String secondName) {
         driver.findElement(lastNameField).sendKeys(secondName);
     }
 
-    public void ClickRegister() {
+    public void clickRegister() {
         driver.findElement(registerButton).click();
     }
 
-    public void ClickHome() {
+    public void clickHome() {
         driver.findElement(homeLink).click();
     }
 
-    public String GetErrorMessage() {
+/*    public String GetErrorMessage() {
         return driver.findElement(errorMessage).getText();
     }
+*/
+    public String getErrorMessage() {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+            return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div/main/div/div/form/div[1]"))).getText();
+        } catch (TimeoutException e) {
+             return "";
+        }
 }
+
+}
+
+

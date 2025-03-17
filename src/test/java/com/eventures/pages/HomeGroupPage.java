@@ -11,7 +11,7 @@ public class HomeGroupPage {
     private By newEventLink = By.linkText("new event");
     private By viewAllEventsLink = By.linkText("all events");
     private By navLink = By.xpath("//li[@class=\"nav-item active\"]");
-    private By createEventsNav = By.linkText("Create Events");
+    private By createEventsNav = By.linkText("Create Event");
     private By viewAllEventsNav = By.linkText("All Events");
     private By logOutLink = By.xpath("/html/body/header/nav/div/div/ul[1]/li[2]/form/button");
     private By usernameText = By.xpath("/html/body/div/main/div/h1");
@@ -58,9 +58,9 @@ public class HomeGroupPage {
 
     public void logIn(){
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.Open();
-        loginPage.EnterUsername("guest");
-        loginPage.EnterPassword("guest");
-        loginPage.ClickLogin();
+        loginPage.openPage();
+        loginPage.enterUsername("guest");
+        loginPage.enterPassword("guest");
+        loginPage.clickLogin();
     }
 }
