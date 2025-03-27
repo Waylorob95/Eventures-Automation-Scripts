@@ -1,9 +1,10 @@
 package com.eventures.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 
+import java.time.Duration;
 import java.util.List;
 
 public class AllEventsPage {
@@ -16,6 +17,10 @@ public class AllEventsPage {
 
     private  boolean allOwnedEventsHaveButtons;
     private boolean noButtonsForNonOwners;
+
+    private final Wait<WebDriver> wait = new FluentWait<>(driver)
+            .withTimeout(Duration.ofSeconds(10))
+            .ignoring(StaleElementReferenceException.class);
 
     public AllEventsPage(WebDriver driver) {
         this.driver = driver;
@@ -49,63 +54,80 @@ public class AllEventsPage {
 
     public boolean areEditDeleteButtonsPresentForOwner(String loggedInUsername) {
         List<WebElement> rows = driver.findElements(tableRows);
-        allOwnedEventsHaveButtons = false;
 
         for (WebElement row : rows) {
             String owner = row.findElement(By.xpath("./td[last()-1]")).getText();
-//            System.out.println(owner);
 
-            if (owner.equals(loggedInUsername)) {
-                boolean editButtonExists = !row.findElements(By.linkText("Edit")).isEmpty();
-                boolean deleteButtonExists = !row.findElements(By.linkText("Delete")).isEmpty();
+            try {
+                if (owner.equals(loggedInUsername)) {
+                    boolean hasEditButton = row.findElements(By.xpath(".//a[contains(text(),'Edit')]")).size() > 0;
+                    boolean hasDeleteButton = row.findElements(By.xpath(".//a[contains(text(),'Delete')]")).size() > 0;
 
-                if (editButtonExists && deleteButtonExists) {
-                    allOwnedEventsHaveButtons = true;
-                } else {
-                    allOwnedEventsHaveButtons = false;
-                    break;
+                    if (!hasEditButton || !hasDeleteButton) {
+                        return false;
+                    }
                 }
+            } catch (StaleElementReferenceException | NoSuchElementException e) {
+                return false;
             }
         }
-        return allOwnedEventsHaveButtons;
+        return true;
     }
 
     public boolean areEditDeleteButtonsAbsentForNonOwner(String loggedInUsername) {
         List<WebElement> rows = driver.findElements(tableRows);
-        noButtonsForNonOwners = true;
 
         for (WebElement row : rows) {
             String owner = row.findElement(By.xpath("./td[last()-1]")).getText();
-//            System.out.println(owner);
 
-            if (!owner.equals(loggedInUsername)) {
-                boolean editButtonExists = !row.findElements(By.linkText("Edit")).isEmpty();
-                boolean deleteButtonExists = !row.findElements(By.linkText("Delete")).isEmpty();
+            try{
+                if (!owner.equals(loggedInUsername)) {
+                    if (row.findElements(By.xpath(".//a[contains(.,'Edit') or contains(.,'Delete')]")).size() > 0) {
+                        return false;
+                    }
+                }
+            } catch (StaleElementReferenceException | NoSuchElementException e){
+                return false;
+            }
+        }
+        return true;
+    }
 
-                if (editButtonExists || deleteButtonExists) {
-                    noButtonsForNonOwners = false;
+    public void clickDeleteEvent(String loggedInUser) {
+        List<WebElement> rows = driver.findElements(tableRows);
+
+            for (WebElement row : rows) {
+                try {
+                    String owner = row.findElement(By.xpath("./td[last()-1]")).getText();
+                    String eventName = row.findElement(By.xpath("./td[1]")).getText();
+
+                    if (owner.equals(loggedInUser)) {
+                        System.out.println("User is the owner:  " + owner + ". Proceeding to deleting...");
+                        System.out.println("Deleting event: " + eventName);
+                        WebElement deleteButton = row.findElement(By.linkText("Delete"));
+                        deleteButton.click();
+                        break;
+                    }
+                } catch (StaleElementReferenceException | NoSuchElementException e) {
+                    System.out.println("No element found. Aborting...");
                     break;
                 }
             }
-        }
-        return noButtonsForNonOwners;
     }
+
 
     public void clickEditEvent(String eventName) {
         List<WebElement> rows = driver.findElements(tableRows);
-        for (WebElement row : rows) {
-            if (row.findElement(By.xpath("./td[1]")).getText().equals(eventName)) {
-                row.findElement(By.linkText("Edit")).click();
-            }
-        }
-    }
 
-    public void clickDeleteEvent(String eventName) {
-
-        List<WebElement> rows = driver.findElements(tableRows);
         for (WebElement row : rows) {
-            if (row.findElement(By.xpath("./td[1]")).getText().equals(eventName)) {
-                row.findElement(By.linkText("Delete")).click();
+            try {
+                WebElement eventCell = row.findElement(By.xpath("./td[1]"));
+                if (eventCell.getText().equals(eventName)) {
+                    WebElement deleteButton = row.findElement(By.linkText("Edit"));
+                    deleteButton.click();
+                }
+            } catch (StaleElementReferenceException | NoSuchElementException e) {
+                break;
             }
         }
     }

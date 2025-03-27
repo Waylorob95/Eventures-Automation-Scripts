@@ -31,3 +31,5 @@ d
 4src/test/java/com/eventures/pages/AllEventsPage.java,b\3\b30e680a970f9cc6d36324eb000aef2d05138672
 h
 8src/test/java/com/eventures/tests/ViewAllEventsTest.java,1\1\11585875b2e3b3f35b5d1c47674ab67b0aeed702
+w
+G.idea/sonarlint/issuestore/6/5/65c187d3e1f7f7d01030814fd68326eb9b2dfae1,1\a\1a071d3548ea5c40c30d14133b14370b3bb5a2a2
