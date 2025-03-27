@@ -56,11 +56,4 @@ public class HomeGroupPage {
         driver.findElement(logOutLink).click();
     }
 
-    public void logIn(){
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.openPage();
-        loginPage.enterUsername("guest");
-        loginPage.enterPassword("guest");
-        loginPage.clickLogin();
-    }
 }

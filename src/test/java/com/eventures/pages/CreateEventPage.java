@@ -68,7 +68,7 @@ public class CreateEventPage {
 
     public String getErrorMessageName() {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
             return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("Name-error"))).getText();
         } catch (TimeoutException e) {
             return "";
@@ -77,7 +77,7 @@ public class CreateEventPage {
 
     public String getErrorMessageTotalTickets() {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
             return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("PricePerTicket-error"))).getText();
         } catch (TimeoutException e) {
             return "";
@@ -86,7 +86,7 @@ public class CreateEventPage {
 
     public String getErrorMessagePlace() {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
             return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("Place-error"))).getText();
         } catch (TimeoutException e) {
             return "";

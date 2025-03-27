@@ -23,3 +23,11 @@ d
 4src/test/java/com/eventures/pages/HomeGroupPage.java,8\b\8b13ef413ab51c2c4795ced034616cb29604fbbd
 f
 6src/test/java/com/eventures/pages/CreateEventPage.java,f\d\fdcb75170675a6df3ac6f5815a9e42cea561123e
+9
+	suite.xml,6\f\6f871c266af840b08a5aa630d56b60effa843277
+g
+7src/test/java/com/eventures/base/TestDataGenerator.java,e\b\eb13a8089332cef107441911de99c8a5d8e117c3
+d
+4src/test/java/com/eventures/pages/AllEventsPage.java,b\3\b30e680a970f9cc6d36324eb000aef2d05138672
+h
+8src/test/java/com/eventures/tests/ViewAllEventsTest.java,1\1\11585875b2e3b3f35b5d1c47674ab67b0aeed702

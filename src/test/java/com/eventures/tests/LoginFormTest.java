@@ -1,6 +1,7 @@
 package com.eventures.tests;
 
 import com.eventures.base.BaseTest;
+import com.eventures.base.TestDataGenerator;
 import com.eventures.base.Utils;
 import com.eventures.pages.LoginPage;
 import org.testng.Assert;
@@ -30,7 +31,7 @@ public class LoginFormTest extends BaseTest {
     public void LoginWithInvalidCredentials() {
         loginPage.openPage();
         loginPage.enterUsername(username);
-        loginPage.enterPassword(Utils.generateString(5));
+        loginPage.enterPassword(TestDataGenerator.getRandomPassword());
         loginPage.clickLogin();
 
         if(driver.getCurrentUrl().equals("http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Identity/Account/Login")){
@@ -46,7 +47,7 @@ public class LoginFormTest extends BaseTest {
     @Test(priority = 2)
     public void LoginWithEmptyPasswordField() {
         loginPage.openPage();
-        loginPage.enterUsername(password);
+        loginPage.enterUsername(username);
         loginPage.clickLogin();
 
         if(driver.getCurrentUrl().equals("http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Identity/Account/Login")){

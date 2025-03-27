@@ -69,7 +69,7 @@ public class RegisterPage {
 */
     public String getErrorMessage() {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
             return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div/main/div/div/form/div[1]"))).getText();
         } catch (TimeoutException e) {
              return "";

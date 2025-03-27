@@ -53,7 +53,7 @@ public class LoginPage {
 */
     public String getErrorMessage() {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
             return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=\"text-danger validation-summary-errors\"]"))).getText();
         } catch (TimeoutException e) {
             return "";

@@ -1,11 +1,14 @@
 package com.eventures.tests;
 
 import com.eventures.base.BaseTest;
+import com.eventures.base.TestDataGenerator;
 import com.eventures.base.Utils;
 import com.eventures.pages.CreateEventPage;
 import com.eventures.pages.LoginPage;
+import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 
@@ -13,6 +16,13 @@ public class CreateNewEventTest extends BaseTest {
 
     private LoginPage loginPage;
     private CreateEventPage createEventPage;
+
+    private String eventName;
+    private String eventPlace;
+    private String eventStartDate = "05/05/2025";
+    private String eventEndDate = "05/05/2026";
+    private String ticketsPrice = "10";
+    private String eventTotalTickets = "1000";
 
     @BeforeClass
     public void loginToApp() {
@@ -25,18 +35,24 @@ public class CreateNewEventTest extends BaseTest {
         createEventPage = new CreateEventPage(driver);
     }
 
+    @BeforeMethod
+    public void clearData() {
+        createEventPage.openPage();
+        createEventPage.clearData();
+    }
+
 
     @Test(priority = 1)
     public void TestingWithValidData() {
-        createEventPage.openPage();
-        createEventPage.clearData();
+        eventName = TestDataGenerator.getRandomEventName();
+        eventPlace = TestDataGenerator.getRandomEventPlace();
 
-        createEventPage.enterName(Utils.generateString(5));
-        createEventPage.enterPlace(Utils.generateString(7));
-        createEventPage.enterStartDate("05/05/2025");
-        createEventPage.enterEndDate("05/05/2026");
-        createEventPage.enterPrice("10");
-        createEventPage.enterTotalTickets("1000");
+        createEventPage.enterName(eventName);
+        createEventPage.enterPlace(eventPlace);
+        createEventPage.enterStartDate(eventStartDate);
+        createEventPage.enterEndDate(eventEndDate);
+        createEventPage.enterPrice(ticketsPrice);
+        createEventPage.enterTotalTickets(eventTotalTickets);
         createEventPage.clickCreate();
 
         Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Events/All", "The event was not created");
@@ -44,15 +60,15 @@ public class CreateNewEventTest extends BaseTest {
     }
     @Test(priority = 1)
     public void TestingTheNameFieldShort() {
-        createEventPage.openPage();
-        createEventPage.clearData();
+        eventName = TestDataGenerator.getRandomEventNameInvalid();
+        eventPlace = TestDataGenerator.getRandomEventPlace();
 
-        createEventPage.enterName(Utils.generateString(2));
-        createEventPage.enterPlace(Utils.generateString(7));
-        createEventPage.enterStartDate("05/05/2025");
-        createEventPage.enterEndDate("05/05/2026");
-        createEventPage.enterPrice("10");
-        createEventPage.enterTotalTickets("1000");
+        createEventPage.enterName(eventName);
+        createEventPage.enterPlace(eventPlace);
+        createEventPage.enterStartDate(eventStartDate);
+        createEventPage.enterEndDate(eventEndDate);
+        createEventPage.enterPrice(ticketsPrice);
+        createEventPage.enterTotalTickets(eventTotalTickets);
         createEventPage.clickCreate();
 
         if(driver.getCurrentUrl().equals("http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Events/Create")){
@@ -67,14 +83,13 @@ public class CreateNewEventTest extends BaseTest {
 
     @Test(priority = 1)
     public void TestingTheNameFieldEmpty() {
-        createEventPage.openPage();
-        createEventPage.clearData();
+        eventPlace = TestDataGenerator.getRandomEventPlace();
 
-        createEventPage.enterPlace(Utils.generateString(7));
-        createEventPage.enterStartDate("05/05/2025");
-        createEventPage.enterEndDate("05/05/2026");
-        createEventPage.enterPrice("10");
-        createEventPage.enterTotalTickets("1000");
+        createEventPage.enterPlace(eventPlace);
+        createEventPage.enterStartDate(eventStartDate);
+        createEventPage.enterEndDate(eventEndDate);
+        createEventPage.enterPrice(ticketsPrice);
+        createEventPage.enterTotalTickets(eventTotalTickets);
         createEventPage.clickCreate();
 
         if(driver.getCurrentUrl().equals("http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Events/Create")){
@@ -89,15 +104,15 @@ public class CreateNewEventTest extends BaseTest {
 
     @Test(priority = 2)
     public void TestingThePlaceFieldShort() {
-        createEventPage.openPage();
-        createEventPage.clearData();
+        eventName = TestDataGenerator.getRandomEventName();
+        eventPlace = TestDataGenerator.getRandomEventNameInvalid();
 
-        createEventPage.enterName(Utils.generateString(5));
-        createEventPage.enterPlace(Utils.generateString(2));
-        createEventPage.enterStartDate("05/05/2025");
-        createEventPage.enterEndDate("05/05/2026");
-        createEventPage.enterPrice("10");
-        createEventPage.enterTotalTickets("1000");
+        createEventPage.enterName(eventName);
+        createEventPage.enterPlace(eventPlace);
+        createEventPage.enterStartDate(eventStartDate);
+        createEventPage.enterEndDate(eventEndDate);
+        createEventPage.enterPrice(ticketsPrice);
+        createEventPage.enterTotalTickets(eventTotalTickets);
         createEventPage.clickCreate();
 
         if(driver.getCurrentUrl().equals("http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Events/Create")){
@@ -112,14 +127,13 @@ public class CreateNewEventTest extends BaseTest {
 
     @Test(priority = 1)
     public void TestingThePlaceFieldEmpty() {
-        createEventPage.openPage();
-        createEventPage.clearData();
+        eventName = TestDataGenerator.getRandomEventName();
 
-        createEventPage.enterName(Utils.generateString(5));
-        createEventPage.enterStartDate("05/05/2025");
-        createEventPage.enterEndDate("05/05/2026");
-        createEventPage.enterPrice("10");
-        createEventPage.enterTotalTickets("1000");
+        createEventPage.enterName(eventName);
+        createEventPage.enterStartDate(eventStartDate);
+        createEventPage.enterEndDate(eventEndDate);
+        createEventPage.enterPrice(ticketsPrice);
+        createEventPage.enterTotalTickets(eventTotalTickets);
         createEventPage.clickCreate();
 
         if(driver.getCurrentUrl().equals("http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Events/Create")){
@@ -134,19 +148,20 @@ public class CreateNewEventTest extends BaseTest {
 
     @Test(priority = 1)
     public void TestingTheTotalTickets0() {
-        createEventPage.openPage();
-        createEventPage.clearData();
+        eventName = TestDataGenerator.getRandomEventName();
+        eventPlace = TestDataGenerator.getRandomEventPlace();
+        String zeroTickets = "0";
 
-        createEventPage.enterName(Utils.generateString(5));
-        createEventPage.enterPlace(Utils.generateString(7));
-        createEventPage.enterStartDate("05/05/2025");
-        createEventPage.enterEndDate("05/05/2026");
-        createEventPage.enterPrice("10");
-        createEventPage.enterTotalTickets("0");
+        createEventPage.enterName(eventName);
+        createEventPage.enterPlace(eventPlace);
+        createEventPage.enterStartDate(eventStartDate);
+        createEventPage.enterEndDate(eventEndDate);
+        createEventPage.enterPrice(ticketsPrice);
+        createEventPage.enterTotalTickets(zeroTickets);
         createEventPage.clickCreate();
 
         if(driver.getCurrentUrl().equals("http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Events/Create")){
-            String errorMessage = createEventPage.getErrorMessagePlace();
+            String errorMessage = createEventPage.getErrorMessageTotalTickets();
             Assert.assertFalse(errorMessage.isEmpty(), "Expected error message, but none found!");
             Assert.assertEquals(errorMessage, "Total Tickets must be a positive number and less than 1000.", "Error message did not match!");
             System.out.println("Error message: " + errorMessage);
@@ -157,15 +172,16 @@ public class CreateNewEventTest extends BaseTest {
 
     @Test(priority = 1)
     public void TestingThePriceTickets1100() {
-        createEventPage.openPage();
-        createEventPage.clearData();
+        eventName = TestDataGenerator.getRandomEventName();
+        eventPlace = TestDataGenerator.getRandomEventPlace();
+        String highPrice = "1100";
 
-        createEventPage.enterName(Utils.generateString(5));
-        createEventPage.enterPlace(Utils.generateString(7));
-        createEventPage.enterStartDate("05/05/2025");
-        createEventPage.enterEndDate("05/05/2026");
-        createEventPage.enterPrice("1100");
-        createEventPage.enterTotalTickets("1000");
+        createEventPage.enterName(eventName);
+        createEventPage.enterPlace(eventPlace);
+        createEventPage.enterStartDate(eventStartDate);
+        createEventPage.enterEndDate(eventEndDate);
+        createEventPage.enterPrice(highPrice);
+        createEventPage.enterTotalTickets(eventTotalTickets);
         createEventPage.clickCreate();
 
         if(driver.getCurrentUrl().equals("http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Events/Create")){
@@ -177,10 +193,32 @@ public class CreateNewEventTest extends BaseTest {
             Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Events/Create", "Event was created with very high ticket price");
         }
     }
+    @Test(priority = 2)
+    public void TestingDates() {
+        eventName = TestDataGenerator.getRandomEventName();
+        eventPlace = TestDataGenerator.getRandomEventPlace();
+        String wrongEndDate = "05/05/2023";
+
+        createEventPage.enterName(eventName);
+        createEventPage.enterPlace(eventPlace);
+        createEventPage.enterStartDate(eventStartDate);
+        createEventPage.enterEndDate(wrongEndDate);
+        createEventPage.enterPrice(ticketsPrice);
+        createEventPage.enterTotalTickets(eventTotalTickets);
+        createEventPage.clickCreate();
+
+        if (driver.getCurrentUrl().equals("http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Events/Create")){
+            String errorMessage = driver.findElement(By.xpath("/html/body/div/main/form/div/div[2]/div[2]/span")).getText();
+            Assert.assertFalse(errorMessage.isEmpty(), "Expected error message, but none found!");
+            Assert.assertEquals(errorMessage, "End Date must be after Start Date.", "Error message did not match!");
+            System.out.println("Error message: " + errorMessage);
+        } else {
+            Assert.assertEquals(driver.getCurrentUrl(), "http://softuni-qa-loadbalancer-2137572849.eu-north-1.elb.amazonaws.com:81/Events/Create", "Event was created with wrong end date");
+        }
+    }
 
     @Test(priority = 4)
     public void BackToList() {
-        createEventPage.openPage();
         createEventPage.backToList();
 
 
